@@ -12,7 +12,6 @@ class GraphNode
         @queue = [self]
 
         until @queue.empty?
-            p @queue
             current = @queue.shift
             visited.add(current)
             current.neighbors.each do |neighbor|
@@ -26,7 +25,7 @@ class GraphNode
     end
 
     def inspect
-        "<Node #{val}"
+        "<Node #{val}>"
     end
 end
 
@@ -41,4 +40,4 @@ c.neighbors = [b, d]
 e.neighbors = [a]
 f.neighbors = [e]
 
-p a.bfs(a, "f")
+p a.bfs(a, "b")
