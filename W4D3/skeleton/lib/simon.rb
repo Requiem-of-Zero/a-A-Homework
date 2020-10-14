@@ -21,19 +21,24 @@ class Simon
     @sequence_length += 1
     show_sequence
     require_sequence
-    round_success_message
+    if @game_over == false
+      round_success_message
+    end
   end
 
   def show_sequence
-     add_random_color
+      add_random_color
+      p @seq
+      sleep(1)
+      system("clear")
   end
 
   def require_sequence
-    i = 0
+    i = 1
     while i < sequence_length
-      puts "What was the sequence?"
+      puts "What was the color sequence?"
       guess = gets.chomp
-      if guess == @seq[i]
+      if guess == @seq[i-1]
         i+=1
       else
         @game_over = true
@@ -47,11 +52,11 @@ class Simon
   end
 
   def round_success_message
-    "Great memory!"
+    p "Great memory!"
   end
 
   def game_over_message
-    "You tried your best"
+    p "You tried your best"
   end
 
   def reset_game
@@ -60,3 +65,7 @@ class Simon
     @seq = []
   end
 end
+
+game = Simon.new
+
+game.play
